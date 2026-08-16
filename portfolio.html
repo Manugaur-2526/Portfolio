@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manu Gaur | Portfolio & Resume</title>
+    <style>
+        :root { 
+            --bg-dark: #030712;
+            --card-bg: #111827;
+            --card-border: #1f2937;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --text-heading: #f9fafb;
+            --text-body: #9ca3af;
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            background-color: var(--bg-dark);
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 4px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(3, 7, 18, 0.6) 100%);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 6rem 2rem 5rem 2rem;
+            border-bottom: 1px solid var(--card-border);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+            max-width: 700px;
+        }
+
+        .profile-container {
+            display: inline-block;
+            position: relative;
+            flex-shrink: 0;
+            width: 220px;
+            height: 290px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--card-border);
+            background-color: var(--card-bg);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+            transition: var(--transition-smooth);
+            z-index: 5;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+
+        .profile-container:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.35);
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.08);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.0rem, 4vw, 2.8rem);
+            color: var(--text-heading);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.15rem);
+            margin-bottom: 2rem;
+            color: var(--text-body);
+        }
+
+        .action-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+            font-size: 0.95rem;
+            z-index: 10;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--text-heading);
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-heading);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-body);
+            transform: translateY(-2px);
+        }
+
+        #copy-status {
+            font-size: 0.85rem;
+            color: #10b981;
+            font-weight: bold;
+            min-width: 75px;
+            text-align: left;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-heading);
+            margin-bottom: 2.5rem;
+            border-left: 5px solid var(--primary);
+            padding-left: 0.75rem;
+        }
+
+        /* RESUME SECTION STYLES */
+        .resume-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .resume-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
+        }
+
+        .resume-card h3 {
+            color: var(--text-heading);
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-group h4 {
+            color: #a5b4fc;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--card-border);
+            margin-bottom: 1.75rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+
+        .role-title {
+            color: var(--text-heading);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .role-company {
+            color: #a5b4fc;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .role-date {
+            color: var(--text-body);
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .role-desc {
+            font-size: 0.95rem;
+            color: var(--text-body);
+        }
+
+        .role-desc ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .role-desc li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* PROJECT GRID CONFIGURATION */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            background-color: #1f2937;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0.85;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.04);
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-scope {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--text-heading);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-body);
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+            margin-bottom: 1.25rem;
+        }
+
+        .badge {
+            background-color: #1f2937;
+            color: #a5b4fc;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-links {
+            display: flex;
+            gap: 1rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 1rem;
+        }
+
+        .card-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .card-link:hover {
+            color: #a5b4fc;
+            text-decoration: underline;
+        }
+
+        /* CONTACT SECTION STYLES */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 4rem;
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.4) 0%, rgba(11, 15, 25, 0.6) 100%);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .contact-info p {
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            max-width: 450px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-body);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            width: fit-content;
+        }
+
+        .social-item:hover {
+            color: var(--text-heading);
+            transform: translateX(4px);
+        }
+
+        .social-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+            transition: var(--transition-smooth);
+        }
+
+        .social-item:hover svg {
+            fill: #a5b4fc;
+        }
+
+        .contact-form {
+            background-color: rgba(17, 24, 39, 0.85);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-heading);
+        }
+
+        .form-group input, .form-group textarea {
+            background-color: #1f2937;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            color: var(--text-heading);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            width: 100%;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            background-color: #111827;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        #form-status {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(4px);
+            color: #6b7280;
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+                padding-top: 5rem;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .profile-container {
+                width: 180px;
+                height: 240px;
+                margin: 0 auto;
+            }
+            .action-container {
+                justify-content: center;
+            }
+            .resume-section {
+                grid-template-columns: 1fr;
+            }
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-animation"></canvas>
+
+    <section class="hero">
+        <div class="profile-container">
+            <img src="profile.jpeg" alt="Manu Gaur Profile Picture" class="profile-img">
+        </div>
+        
+        <div class="hero-content">
+            <h1>Hi, I'm Manu Gaur. <br>I Build <span>Software & Concurrent Systems</span>.</h1>
+            <p>CSE Undergraduate focused on full-stack web platforms, multithreading concurrency, and automation tools. 5-Star HackerRank Python coder.</p>
+            
+            <div class="action-container">
+                <a href="#resume" class="btn btn-primary">View Full Resume</a>
+                <button id="email-btn" class="btn btn-secondary">Copy Email Contact</button>
+                <span id="copy-status" aria-live="polite"></span>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- RESUME & SKILLS SECTION -->
+        <h2 class="section-title" id="resume">Resume & Background</h2>
+        <!-- DOWNLOAD RESUME CARD -->
+    <div class="resume-download-card">
+    <div class="download-info">
+    </div>
+    <div class="download-actions">
+        <a href="Manu_Gaur_Resume.docx" class="btn btn-primary" download="Manu_Gaur_Resume.pdf">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download PDF
+        </a>
+        <a href="Manu_Gaur_Resume.docx" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            View Softcopy
+        </a>
+    </div>
+    </div> <div class="resume-section">
+            <aside class="resume-card">
+                <h3>Technical Skills</h3>
+                
+                <div class="skill-group">
+                    <h4>Languages</h4>
+                    <div class="tech-badges">
+                        <span class="badge">Python</span>
+                        <span class="badge">C++</span>
+                        <span class="badge">Java</span>
+                        <span class="badge">C</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">Swift</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Web & Frameworks</h4>
+                    <div class="tech-badges">
+                        <span class="badge">ReactJS</span>
+                        <span class="badge">NodeJS</span>
+                        <span class="badge">Flutter</span>
+                        <span class="badge">Express</span>
+                        <span class="badge">HTML5/CSS3</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Databases & Cloud</h4>
+                    <div class="tech-badges">
+                        <span class="badge">MySQL</span>
+                        <span class="badge">MongoDB</span>
+                        <span class="badge">SQL Server</span>
+                        <span class="badge">Redis</span>
+                        <span class="badge">AWS Foundations</span>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="resume-card">
+                <h3>Education & Achievements</h3>
+                
+                <div class="timeline-item">
+                    <div class="role-title">B.Tech in Computer Science & Engineering</div>
+                    <div class="role-company">ABES Engineering College, Ghaziabad (AKTU)</div>
+                    <div class="role-date">2024 – 2028 | CGPA: 8.18 / 10</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="role-title">Certifications & Ranks</div>
+                    <div class="role-company">HackerRank & AWS Academy</div>
+                    <div class="role-desc">
+                        <ul>
+                            <li><strong>HackerRank 5-Star Python Coder</strong></li>
+                            <li><strong>AWS Academy Graduate:</strong> Cloud Foundations (Issued Dec 2025)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="role-title">Activities & Leadership</div>
+                    <div class="role-company">ACM ABES & ACM-W ABES Student Chapter</div>
+                    <div class="role-desc">
+                        <ul>
+                            <li>Technical Core Member co-organizing technical sessions and community outreach initiatives.</li>
+                            <li>Led 'Hour of AI' outreach workshops introducing fundamental AI concepts to students.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECTS SECTION -->
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-grid">
+            <!-- PROJECT 1: CONCERT DISCOVERY PLATFORM -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect width='100%25' height='100%25' fill='%231f2937'/%3E%3C/svg%3E" data-src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80" alt="Concert Discovery Platform">
+                </div>
+                <div class="card-content">
+                    <span class="card-scope">Project Scope: Full-Stack Web App / Recommendation System</span>
+                    <h3 class="card-title">Personalized Concert Discovery Platform</h3>
+                    <p class="card-desc">Engineered an end-to-end event discovery platform analyzing Spotify listening preferences to match users with live tour listings using vector similarity algorithms. Features real-time Redis seat locking to eliminate double-bookings, dynamic .ics calendar exports, and automated QR code tickets.</p>
+                    <div class="tech-badges">
+                        <span class="badge">Python</span>
+                        <span class="badge">Spotify API</span>
+                        <span class="badge">Redis</span>
+                        <span class="badge">Vector Matching</span>
+                        <span class="badge">JavaScript</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/Manugaur-2526" class="card-link" target="_blank" rel="noopener noreferrer">GitHub Repository →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJECT 2: CONCURRENT BANKING SYSTEM -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect width='100%25' height='100%25' fill='%231f2937'/%3E%3C/svg%3E" data-src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80" alt="Banking System Visual">
+                </div>
+                <div class="card-content">
+                    <span class="card-scope">Project Scope: Systems Programming & Concurrency</span>
+                    <h3 class="card-title">Concurrent Banking Management System</h3>
+                    <p class="card-desc">Built a two-tier banking engine with a Python control layer and a SQL Server backend. Implemented thread synchronization mechanisms (locks/semaphores) to prevent race conditions during simultaneous transactions and ensure ACID compliance.</p>
+                    <div class="tech-badges">
+                        <span class="badge">Python</span>
+                        <span class="badge">SQL Server</span>
+                        <span class="badge">Multithreading</span>
+                        <span class="badge">Concurrency</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/Manugaur-2526/Banking-system" class="card-link" target="_blank" rel="noopener noreferrer">GitHub Repository →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJECT 3: AUTOMATED RESUME PARSER -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect width='100%25' height='100%25' fill='%231f2937'/%3E%3C/svg%3E" data-src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=500&q=80" alt="Resume Parser Visual">
+                </div>
+                <div class="card-content">
+                    <span class="card-scope">Project Scope: Data Processing & NLP Tools</span>
+                    <h3 class="card-title">Automated Resume Parser Engine</h3>
+                    <p class="card-desc">Developed an automated document parser extracting structured fields (name, skills, experience, education) from unstructured PDF/DOCX resumes into standardized JSON/XML schemas for recruitment pipelines.</p>
+                    <div class="tech-badges">
+                        <span class="badge">Python</span>
+                        <span class="badge">NLP</span>
+                        <span class="badge">Regex</span>
+                        <span class="badge">JSON / XML</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/Manugaur-2526/Resume-parser.git" class="card-link" target="_blank" rel="noopener noreferrer">GitHub Repository →</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <section class="container contact-layout" id="contact">
+        <div class="contact-info">
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Get In Touch</h2>
+            <p>I am open to collaborations, research initiatives, and professional software engineering opportunities.</p>
+            
+            <nav class="social-links" aria-label="Social Profiles Navigation">
+                <a href="https://github.com/Manugaur-2526" class="social-item" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub Profiles
+                </a>
+                <a href="https://linkedin.com" class="social-item" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn Profile
+                </a>
+            </nav>
+        </div>
+
+        <div class="contact-form-container">
+            <form class="contact-form" id="portfolio-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="form-name">Full Name</label>
+                    <input type="text" id="form-name" name="name" required placeholder="Alex Mercer">
+                </div>
+                <div class="form-group">
+                    <label for="form-email">Email Address</label>
+                    <input type="email" id="form-email" name="email" required placeholder="alex@company.com">
+                </div>
+                <div class="form-group">
+                    <label for="form-message">Message</label>
+                    <textarea id="form-message" name="message" required placeholder="Let's build something dynamic..."></textarea>
+                </div>
+                <div class="submit-btn-wrapper">
+                    <button type="submit" class="btn btn-primary" style="padding: 0.75rem 2.2rem;">Send Message</button>
+                    <span id="form-status" aria-live="polite"></span>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Manu Gaur. Engineered natively for optimal performance and accessibility standards.</p>
+    </footer>
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('bg-animation');
+            const ctx = canvas.getContext('2d');
+            
+            let particles = [];
+            const maxParticles = 65; 
+            const mouse = { x: null, y: null, radius: 160 };
+
+            window.addEventListener('mousemove', function(e) {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            window.addEventListener('mouseout', function() {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+            }
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.baseX = this.x;
+                    this.baseY = this.y;
+                    this.speedX = (Math.random() - 0.5) * 0.4;
+                    this.speedY = (Math.random() - 0.5) * 0.4;
+                    this.density = (Math.random() * 20) + 10;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+                    if (mouse.x != null && mouse.y != null) {
+                        let dx = mouse.x - this.x;
+                        let dy = mouse.y - this.y;
+                        let distance = Math.hypot(dx, dy);
+                        if (distance < mouse.radius) {
+                            let force = (mouse.radius - distance) / mouse.radius;
+                            let directionX = (dx / distance) * force * this.density * 0.15;
+                            let directionY = (dy / distance) * force * this.density * 0.15;
+                            this.x += directionX;
+                            this.y += directionY;
+                        }
+                    }
+                }
+                draw() {
+                    ctx.fillStyle = 'rgba(99, 102, 241, 0.45)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for(let i = 0; i < maxParticles; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function connectParticles() {
+                let opacityValue = 1;
+                for (let a = 0; a < particles.length; a++) {
+                    for (let b = a; b < particles.length; b++) {
+                        let dx = particles[a].x - particles[b].x;
+                        let dy = particles[a].y - particles[b].y;
+                        let distance = Math.hypot(dx, dy);
+
+                        if (distance < 120) {
+                            opacityValue = (1 - (distance / 120)) * 0.15;
+                            ctx.strokeStyle = `rgba(99, 102, 241, ${opacityValue})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[a].x, particles[a].y);
+                            ctx.lineTo(particles[b].x, particles[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                connectParticles();
+                requestAnimationFrame(animate);
+            }
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+            animate();
+        })();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyImages = document.querySelectorAll("img[data-src]");
+            if ("IntersectionObserver" in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.src = image.getAttribute("data-src");
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                }, { rootMargin: "0px 0px 200px 0px" });
+                lazyImages.forEach(image => imageObserver.observe(image));
+            } else {
+                lazyImages.forEach(image => image.src = image.getAttribute("data-src"));
+            }
+        });
+
+        const emailBtn = document.getElementById("email-btn");
+        if (emailBtn) {
+            emailBtn.addEventListener("click", function() {
+                const emailAddress = "manugaur2526@gmail.com"; 
+                const statusMessage = document.getElementById("copy-status");
+
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(emailAddress)
+                        .then(() => showSuccess(statusMessage))
+                        .catch(() => fallbackCopy(emailAddress, statusMessage));
+                } else {
+                    fallbackCopy(emailAddress, statusMessage);
+                }
+            });
+        }
+
+        function showSuccess(element) {
+            element.innerText = "✓ Copied!";
+            element.style.color = "#10b981";
+            setTimeout(() => { element.innerText = ""; }, 2500);
+        }
+
+        function fallbackCopy(text, element) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed"; 
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showSuccess(element);
+                } else {
+                    throw new Error('Command unsuccessful');
+                }
+            } catch (err) {
+                element.innerText = "manugaur2526@gmail.com";
+                element.style.color = "#a5b4fc";
+                setTimeout(() => { element.innerText = ""; }, 6000);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        const contactForm = document.getElementById("portfolio-form");
+        if (contactForm) {
+            contactForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const statusElement = document.getElementById("form-status");
+                
+                statusElement.innerText = "Processing...";
+                statusElement.style.color = "#a5b4fc";
+
+                setTimeout(() => {
+                    statusElement.innerText = "✓ Message Sent Successfully!";
+                    statusElement.style.color = "#10b981";
+                    contactForm.reset();
+                    setTimeout(() => { statusElement.innerText = ""; }, 4000);
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>
